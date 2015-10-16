@@ -8,13 +8,14 @@ use Silex\ControllerCollection;
 use Silex\ControllerProviderInterface;
 use ExpressLibrary\models\User;
 use ExpressLibrary\forms\LoginType;
+use ExpressLibrary\forms\SignupType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\EqualTo;
-
+use ExpressLibrary\middlewares\AuthorizedMiddleware;
 
 
 class Front extends BaseController implements ControllerProviderInterface
@@ -26,7 +27,7 @@ class Front extends BaseController implements ControllerProviderInterface
          */
         $controllers = $app['controllers_factory'];
        
-        $controllers->get('/home', [$this, 'homeAction'])->bind('homepage');
+        $controllers->get('/home', [$this, 'homeAction'])->before([new AuthorizedMiddleware($app), 'authorize'])->bind('homepage');
         $controllers->match('/user/login', [$this, 'userloginAction'])->bind('userLogin');
         $controllers->match('/user/signup', [$this, 'signupAction'])->bind('userSignup');
 
@@ -64,8 +65,16 @@ class Front extends BaseController implements ControllerProviderInterface
 
             if($form->isValid()) {
 
-               return print_r($user);
+               $login = $user->login();
 
+               if($login) {
+
+                    $this->app['session']->set('login', ['value' => 1]);
+
+                    return "user ada";
+               } else {
+                    return "user invalid";
+               }
 
             } else {
 
@@ -84,7 +93,35 @@ class Front extends BaseController implements ControllerProviderInterface
     public function signupAction(Request $request) 
     {
 
-        return $this->app['twig']->render('signup.html');
 
-    }    
+        $user = new User();
+
+        $form = $this->app['form.factory']->create(new SignupType, $user);
+
+
+        if($request->getMethod() == "POST") {
+
+            $form->handleRequest($request);
+
+
+            if($form->isValid()) {
+
+               $user->signUp(); 
+
+                return $this->app['twig']->render('success.html');
+            
+            } else {
+
+                return $this->app['twig']->render('signup.html', array('form' => $form->createView()));
+
+            } 
+        } else {
+
+                return $this->app['twig']->render('signup.html', array('form' => $form->createView()));
+
+        }
+
+        
+    }
+      
 }

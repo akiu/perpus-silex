@@ -8,6 +8,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class LoginType extends AbstractType 
 {
+	private $username;
+
+	private $password;
+
 	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder->add('username', 'text',  array(
                 'constraints' => new Assert\NotBlank()))
@@ -15,4 +19,6 @@ class LoginType extends AbstractType
                 'constraints' => new Assert\NotBlank()))
 				->add('login', 'submit');
 	}
+
+	
 }
