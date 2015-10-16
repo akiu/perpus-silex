@@ -51,31 +51,5 @@ class User extends BaseModel {
 		return $this->status;
 	}
 
-	public function login() {
 
-		$loggedUser = $this->db->fetchAssoc('SELECT * FROM user WHERE username = ? AND status = ?', array($this->username, "active"));
-
-		if(count($loggedUser) > 0) {
-
-			$passCheck = password_verify($this->password, $loggedUser['password']);
-			
-			if($passCheck) {
-
-				return true;
-
-			} else
-
-				return false;
-
-		} else {
-
-			return false;
-		}
-
-	}
-
-	public function signUp() {
-
-		$this->db->insert('user', array('username' => $this->username, 'password' => password_hash($this->password, PASSWORD_DEFAULT), 'email' => $this->email, 'status' => self::DEFAULT_STATUS));
-	}
 }

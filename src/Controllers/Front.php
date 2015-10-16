@@ -3,6 +3,7 @@
 namespace ExpressLibrary\Controllers;
 
 
+use ExpressLibrary\actions\user\SignupAction;
 use Silex\Application;
 use Silex\ControllerCollection;
 use Silex\ControllerProviderInterface;
@@ -16,6 +17,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\EqualTo;
 use ExpressLibrary\middlewares\AuthorizedMiddleware;
+use ExpressLibrary\actions\user\loginAction;
 
 
 class Front extends BaseController implements ControllerProviderInterface
@@ -30,6 +32,7 @@ class Front extends BaseController implements ControllerProviderInterface
         $controllers->get('/home', [$this, 'homeAction'])->before([new AuthorizedMiddleware($app), 'authorize'])->bind('homepage');
         $controllers->match('/user/login', [$this, 'userloginAction'])->bind('userLogin');
         $controllers->match('/user/signup', [$this, 'signupAction'])->bind('userSignup');
+        $controllers->match('/user/profile', [$this, 'profileAction'])->bind('userProfile')->before([new AuthorizedMiddleware($app), 'authorize'])->bind('userProfile');
 
 
 
@@ -54,6 +57,7 @@ class Front extends BaseController implements ControllerProviderInterface
     {   
 
         $user = new User();
+        $loginAction = new loginAction($this->app);
 
         $form = $this->app['form.factory']->create(new LoginType, $user);
 
@@ -65,15 +69,19 @@ class Front extends BaseController implements ControllerProviderInterface
 
             if($form->isValid()) {
 
-               $login = $user->login();
+               $login = $loginAction->handle($user);
 
                if($login) {
 
-                    $this->app['session']->set('login', ['value' => 1]);
+                   $this->app['session']->set('role', ['value' => 'user']);
 
-                    return "user ada";
+                   return $this->app->redirect("userProfile");
+
                } else {
-                    return "user invalid";
+
+                   $this->app['session']->getFlashBag()->add('message', 'Invalid login credential or your account is not active');
+
+                   return $this->app['twig']->render('login.twig', array('form' => $form->createView()));
                }
 
             } else {
@@ -95,6 +103,7 @@ class Front extends BaseController implements ControllerProviderInterface
 
 
         $user = new User();
+        $signup = new SignupAction($this->app);
 
         $form = $this->app['form.factory']->create(new SignupType, $user);
 
@@ -106,7 +115,7 @@ class Front extends BaseController implements ControllerProviderInterface
 
             if($form->isValid()) {
 
-               $user->signUp(); 
+               $signup->handle($user);
 
                 return $this->app['twig']->render('success.html');
             
@@ -122,6 +131,12 @@ class Front extends BaseController implements ControllerProviderInterface
         }
 
         
+    }
+
+    public function profileAction(Request $request)
+    {
+        //return $this->app['session']->render()
+        return "this is profile page";
     }
       
 }

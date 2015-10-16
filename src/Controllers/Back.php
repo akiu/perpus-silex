@@ -34,6 +34,6 @@ class Back extends BaseController implements ControllerProviderInterface
 
     public function loginAction(Request $request)
     {
-        return 'hello from admin';
+        return $this->app['twig']->render('admin/login.twig.html');
     }
 }

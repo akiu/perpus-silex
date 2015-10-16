@@ -3,7 +3,7 @@
 .idea
 
 # composer vendor dir
-/vendor
+vendor
 
 /app/cache
 /app/logs

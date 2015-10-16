@@ -35,6 +35,17 @@ $app->register(new \Silex\Provider\TranslationServiceProvider());
 $app->mount('/', new \ExpressLibrary\Controllers\Front($app));
 $app->mount('/admin', new \ExpressLibrary\Controllers\Back($app));
 
+$app['db'] = function() {
+    return \Doctrine\DBAL\DriverManager::getConnection(
+        [
+            'dbname' => 'perpus',
+            'user' => 'root',
+            'password' => 'root',
+            'host' => 'localhost',
+            'driver' => 'pdo_mysql'],
+        new \Doctrine\DBAL\Configuration());
+};
+
 if ($app['debug']) {
     Symfony\Component\Debug\Debug::enable(E_ALL, true);
     $app->register(new Silex\Provider\WebProfilerServiceProvider(), [
