@@ -2,62 +2,59 @@
 
 namespace ExpressLibrary\models;
 
-use Symfony\Component\Validator\Mapping\ClassMetadata;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
-class User {
+class User
+{
+    const DEFAULT_STATUS = "pending";
 
+    protected $username;
 
-	const DEFAULT_STATUS = "pending"; 
+    protected $password;
 
-	protected $username;
+    protected $email;
 
-	protected $password;
+    protected $status;
 
-	protected $email;
-
-	protected $status;
-
-	public function getUsername()
+    public function getUsername()
     {
-		return $this->username;
-	} 
+        return $this->username;
+    }
 
-	public function setUsername($name)
+    public function setUsername($name)
     {
-		$this->username = $name;
-	}
+        $this->username = $name;
+    }
 
-	public function setPassword($pass)
+    public function setPassword($pass)
     {
-		$this->password = $pass;
-	}
+        $this->password = $pass;
+    }
 
-	public function getPassword()
+    public function getPassword()
     {
-		return $this->password;
-	}
+        return $this->password;
+    }
 
-	public function setEmail($em)
+    public function setEmail($em)
     {
-		$this->email = $em;
-	}
+        $this->email = $em;
+    }
 
-	public function getEmail()
+    public function getEmail()
     {
-		return $this->email;
-	}
+        return $this->email;
+    }
 
-	public function setStatus($stat)
+    public function setStatus($stat)
     {
-		$this->status = $stat;
-	}
+        $this->status = $stat;
+    }
 
-	public function getStatus()
+    public function getStatus()
     {
-		return $this->status;
-	}
-
-
+        return $this->status;
+    }
 }

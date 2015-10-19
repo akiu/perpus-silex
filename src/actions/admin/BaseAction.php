@@ -2,20 +2,18 @@
 
 namespace ExpressLibrary\actions\admin;
 
-/**
- * Created by PhpStorm.
- * User: akiujih
- * Date: 16/10/15
- * Time: 14:24
- */
-
 use Silex\Application;
 
-
-class BaseAction {
-
+class BaseAction
+{
+    /**
+     * @var Application
+     */
     protected $app;
 
+    /**
+     * @param Application $app
+     */
     public function __construct(Application $app)
     {
 

@@ -5,8 +5,11 @@ namespace ExpressLibrary\actions\admin;
 use ExpressLibrary\actions\admin\BaseAction;
 use ExpressLibrary\models\Category;
 
-class AddcategoryAction extends BaseAction
+class AddCategoryAction extends BaseAction
 {
+    /**
+     * @param Category $category
+     */
     public function handle(Category $category)
     {
         $conn = $this->app['db'];

@@ -4,8 +4,11 @@ namespace ExpressLibrary\actions\admin;
 
 use ExpressLibrary\actions\admin\BaseAction;
 
-class RetrievecategoryAction extends BaseAction
+class RetrieveCategoryAction extends BaseAction
 {
+    /**
+     * @return mixed
+     */
     public function handle()
     {
         $conn = $this->app['db'];
