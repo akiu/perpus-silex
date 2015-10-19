@@ -4,9 +4,9 @@ namespace ExpressLibrary\models;
 
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints as Assert;
-use ExpressLibrary\models\BaseModel;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-class User extends BaseModel {
+class User {
 
 
 	const DEFAULT_STATUS = "pending"; 
@@ -19,35 +19,43 @@ class User extends BaseModel {
 
 	protected $status;
 
-	public function getUsername() {
+	public function getUsername()
+    {
 		return $this->username;
 	} 
 
-	public function setUsername($name) {
+	public function setUsername($name)
+    {
 		$this->username = $name;
 	}
 
-	public function setPassword($pass) {
+	public function setPassword($pass)
+    {
 		$this->password = $pass;
 	}
 
-	public function getPassword() {
+	public function getPassword()
+    {
 		return $this->password;
 	}
 
-	public function setEmail($em) {
+	public function setEmail($em)
+    {
 		$this->email = $em;
 	}
 
-	public function getEmail() {
+	public function getEmail()
+    {
 		return $this->email;
 	}
 
-	public function setStatus($stat) {
+	public function setStatus($stat)
+    {
 		$this->status = $stat;
 	}
 
-	public function getStatus() {
+	public function getStatus()
+    {
 		return $this->status;
 	}
 

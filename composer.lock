@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a1932f93e729785f19b8a8dd406f457d",
-    "content-hash": "c0cea662378b6b8dd90bfa6b796a223d",
+    "hash": "3007464f22a437508791c230e9257cfa",
+    "content-hash": "496423205f0e948c8c6dab9cdf878757",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -294,7 +294,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/532641f0a083b174cdfe837ee55d91eb3e249935",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2c789aa829ea4e5c2d3df5beba8592869ef21395",
                 "reference": "532641f0a083b174cdfe837ee55d91eb3e249935",
                 "shasum": ""
             },
@@ -1131,6 +1131,76 @@
             "time": "2015-10-11 08:29:26"
         },
         {
+            "name": "symfony/doctrine-bridge",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/doctrine-bridge.git",
+                "reference": "b7a3ace53a7b916eb72a1dc35ea49ba89ddb995e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/b7a3ace53a7b916eb72a1dc35ea49ba89ddb995e",
+                "reference": "b7a3ace53a7b916eb72a1dc35ea49ba89ddb995e",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "~2.4",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "doctrine/data-fixtures": "1.0.*",
+                "doctrine/dbal": "~2.4",
+                "doctrine/orm": "~2.4,>=2.4.5",
+                "symfony/dependency-injection": "~2.8|~3.0",
+                "symfony/expression-language": "~2.8|~3.0",
+                "symfony/form": "~2.8|~3.0",
+                "symfony/http-kernel": "~2.8|~3.0",
+                "symfony/property-access": "~2.8|~3.0",
+                "symfony/property-info": "~2.8|3.0",
+                "symfony/security": "~2.8|~3.0",
+                "symfony/stopwatch": "~2.8|~3.0",
+                "symfony/translation": "~2.8|~3.0",
+                "symfony/validator": "~2.8|~3.0"
+            },
+            "suggest": {
+                "doctrine/data-fixtures": "",
+                "doctrine/dbal": "",
+                "doctrine/orm": "",
+                "symfony/form": "",
+                "symfony/property-info": "",
+                "symfony/validator": ""
+            },
+            "type": "symfony-bridge",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Bridge\\Doctrine\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Doctrine Bridge",
+            "homepage": "https://symfony.com",
+            "time": "2015-10-16 11:55:41"
+        },
+        {
             "name": "symfony/event-dispatcher",
             "version": "dev-master",
             "source": {
@@ -1243,7 +1313,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/51ac06f7940beb77e532dafdb8d9efa4bbc45243",
+                "url": "https://api.github.com/repos/symfony/form/zipball/6ca809bc36ff6ecee938d0e46539477310dc8117",
                 "reference": "51ac06f7940beb77e532dafdb8d9efa4bbc45243",
                 "shasum": ""
             },
@@ -1744,7 +1814,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security/zipball/8701aa551dc9824ae920c2bb55f3a77be063429c",
+                "url": "https://api.github.com/repos/symfony/security/zipball/eadd002f7d6ef64268e2fbeb23f4c8d05eaf668f",
                 "reference": "8701aa551dc9824ae920c2bb55f3a77be063429c",
                 "shasum": ""
             },
@@ -2294,7 +2364,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "symfony/twig-bridge": 20,
-        "symfony/intl": 20
+        "symfony/intl": 20,
+        "symfony/doctrine-bridge": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

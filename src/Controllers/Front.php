@@ -29,11 +29,11 @@ class Front extends BaseController implements ControllerProviderInterface
          */
         $controllers = $app['controllers_factory'];
        
-        $controllers->get('/home', [$this, 'homeAction'])->before([new AuthorizedMiddleware($app), 'authorize'])->bind('homepage');
+        $controllers->get('/home', [$this, 'homeAction'])->bind('homepage');
         $controllers->match('/user/login', [$this, 'userloginAction'])->bind('userLogin');
         $controllers->match('/user/signup', [$this, 'signupAction'])->bind('userSignup');
         $controllers->match('/user/profile', [$this, 'profileAction'])->bind('userProfile')->before([new AuthorizedMiddleware($app), 'authorize'])->bind('userProfile');
-
+        $controllers->get('/user/logout', [$this, 'logoutAction'])->bind('userLogout');
 
 
 
@@ -75,7 +75,7 @@ class Front extends BaseController implements ControllerProviderInterface
 
                    $this->app['session']->set('role', ['value' => 'user']);
 
-                   return $this->app->redirect("userProfile");
+                   return $this->app->redirect($this->app["url_generator"]->generate("userProfile"));
 
                } else {
 
@@ -135,8 +135,17 @@ class Front extends BaseController implements ControllerProviderInterface
 
     public function profileAction(Request $request)
     {
-        //return $this->app['session']->render()
-        return "this is profile page";
+
+        return $this->app['twig']->render('userProfile.twig');
+    }
+
+    public function logoutAction()
+    {
+
+        $this->app['session']->remove('role');
+        $this->app['session']->getFlashBag()->add('message', 'You are logged out now');
+        return $this->app->redirect($this->app["url_generator"]->generate("userLogin"));
+
     }
       
 }

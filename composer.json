@@ -26,7 +26,8 @@
         "symfony/form": "^2.7",
         "symfony/security": "^2.7",
         "symfony/twig-bridge": "^3.0@dev",
-        "symfony/intl": "^3.0@dev"
+        "symfony/intl": "^3.0@dev",
+        "symfony/doctrine-bridge": "^3.0@dev"
     },
     "autoload": {
         "psr-4": {

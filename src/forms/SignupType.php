@@ -5,12 +5,13 @@ namespace ExpressLibrary\forms;
 use Symfony\Component\Form\AbstractType;
 use SYmfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 class SignupType extends AbstractType 
 {
 	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder->add('username', 'text',  array(
-                'constraints' => new Assert\NotBlank()))
+                'constraints' => [new Assert\NotBlank()]))
 
 				->add('password', 'repeated', array(
     					'type' => 'password',
@@ -25,4 +26,6 @@ class SignupType extends AbstractType
 					))
 				->add('signup', 'submit');
 	}
+
+
 }

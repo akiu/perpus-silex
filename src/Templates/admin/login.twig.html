@@ -1,153 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <style>
+            * {
+                -ms-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                border: 0;
+            }
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                background: url(http://subtlepatterns.com/patterns/sativa.png) repeat fixed;
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 200;
+            }
+            .login {
+                position: relative;
+                top: 50%;
+                width: 250px;
+                display: table;
+                margin: -150px auto 0 auto;
+                background: #fff;
+                border-radius: 4px;
+            }
+            .legend {
+                position: relative;
+                width: 100%;
+                display: block;
+                background: #FF7052;
+                padding: 15px;
+                color: #fff;
+                font-size: 20px;
+            }
+            .legend:after {
+                content: "";
+                background-image: url(http://simpleicon.com/wp-content/uploads/multy-user.png);
+                background-size: 100px 100px;
+                background-repeat: no-repeat;
+                background-position: 152px -16px;
+                opacity: 0.06;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+            }
+            .input {
+                position: relative;
+                width: 90%;
+                margin: 15px auto;
+            }
+            .input span {
+                position: absolute;
+                display: block;
+                color: #d4d4d4;
+                left: 10px;
+                top: 8px;
+                font-size: 20px;
+            }
+            .input input {
+                width: 100%;
+                padding: 10px 5px 10px 40px;
+                display: block;
+                border: 1px solid #EDEDED;
+                border-radius: 4px;
+                transition: 0.2s ease-out;
+                color: #a1a1a1;
+            }
+            .input input:focus {
+                padding: 10px 5px 10px 10px;
+                outline: 0;
+                border-color: #FF7052;
+            }
+            .submit {
+                width: 45px;
+                height: 45px;
+                display: block;
+                margin: 0 auto -15px auto;
+                background: #fff;
+                border-radius: 100%;
+                border: 1px solid #FF7052;
+                color: #FF7052;
+                font-size: 24px;
+                cursor: pointer;
+                box-shadow: 0px 0px 0px 7px #fff;
+                transition: 0.2s ease-out;
+            }
+            .submit:hover,
+            .submit:focus {
+                background: #FF7052;
+                color: #fff;
+                outline: 0;
+            }
+            .feedback {
+                position: absolute;
+                bottom: -70px;
+                width: 100%;
+                text-align: center;
+                color: #fff;
+                background: #2ecc71;
+                padding: 10px 0;
+                font-size: 12px;
+                display: none;
+                opacity: 0;
+            }
+            .feedback:before {
+                bottom: 100%;
+                left: 50%;
+                border: solid transparent;
+                content: "";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+                border-color: rgba(46, 204, 113, 0);
+                border-bottom-color: #2ecc71;
+                border-width: 10px;
+                margin-left: -10px;
+            }
 
-    <!-- start: Meta -->
-    <meta charset="utf-8">
-    <title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
-    <meta name="description" content="Bootstrap Metro Dashboard">
-    <meta name="author" content="Dennis Ji">
-    <meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <!-- end: Meta -->
-
-    <!-- start: Mobile Specific -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- end: Mobile Specific -->
-
-    <!-- start: CSS -->
-    <link id="bootstrap-style" href="http://localhost:8000/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://localhost:8000/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link id="base-style" href="http://localhost:8000/assets/css/style.css" rel="stylesheet">
-    <link id="base-style-responsive" href="http://localhost:8000/assets/css/style-responsive.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-    <!-- end: CSS -->
+        </style>
+        <title>Admin Login</title>
 
 
-    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <link id="ie-style" href="css/ie.css" rel="stylesheet">
-    <![endif]-->
+        <!-- Bootstrap Core CSS -->
+        <link href="http://localhost:8000/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!--[if IE 9]>
-    <link id="ie9style" href="css/ie9.css" rel="stylesheet">
-    <![endif]-->
+        <!-- Custom CSS -->
+        <link href="http://localhost:8000/assets/css/simple-sidebar.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-    <!-- start: Favicon -->
-    <link rel="shortcut icon" href="http://localhost:8000/assets/img/favicon.ico">
-    <!-- end: Favicon -->
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+    <form class="login" action={{app.url_generator.generate('adminlogin')}} method="post" novalidate>
 
-    <style type="text/css">
-        body { background: url(http://localhost:8000/assets/img/bg-login.jpg) !important; }
-    </style>
+        <fieldset>
 
+            <legend class="legend">Admin Login</legend>
 
+            <div class="input">
+                <input type="email" placeholder="Email" required />
+                <span><i class="fa fa-envelope-o"></i></span>
+            </div>
 
-</head>
+            <div class="input">
+                <input type="password" placeholder="Password" required />
+                <span><i class="fa fa-lock"></i></span>
+            </div>
 
-<body>
-<div class="container-fluid-full">
-    <div class="row-fluid">
+            <button type="submit" class="submit"><i class="fa fa-long-arrow-right"></i></button>
 
-        <div class="row-fluid">
-            <div class="login-box">
-                <div class="icons">
-                    <a href="index.html"><i class="halflings-icon home"></i></a>
-                    <a href="#"><i class="halflings-icon cog"></i></a>
-                </div>
-                <h2>Login to your account</h2>
-                <form class="form-horizontal" action="index.html" method="post">
-                    <fieldset>
+        </fieldset>
 
-                        <div class="input-prepend" title="Username">
-                            <span class="add-on"><i class="halflings-icon user"></i></span>
-                            <input class="input-large span10" name="username" id="username" type="text" placeholder="type username"/>
-                        </div>
-                        <div class="clearfix"></div>
+        <div class="feedback">
+            login successful <br />
+            redirecting...
+        </div>
 
-                        <div class="input-prepend" title="Password">
-                            <span class="add-on"><i class="halflings-icon lock"></i></span>
-                            <input class="input-large span10" name="password" id="password" type="password" placeholder="type password"/>
-                        </div>
-                        <div class="clearfix"></div>
+    </form>
+    <script src="http://localhost:8000/assets/js/jquery.js"></script>
 
-                        <label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://localhost:8000/assets/js/bootstrap.min.js"></script>
+    <script>
+        $( ".input" ).focusin(function() {
+            $( this ).find( "span" ).animate({"opacity":"0"}, 200);
+        });
 
-                        <div class="button-login">
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </div>
-                        <div class="clearfix"></div>
-                </form>
-                <hr>
-                <h3>Forgot Password?</h3>
-                <p>
-                    No problem, <a href="#">click here</a> to get a new password.
-                </p>
-            </div><!--/span-->
-        </div><!--/row-->
-
-
-    </div><!--/.fluid-container-->
-
-</div><!--/fluid-row-->
-
-<!-- start: JavaScript-->
-
-<script src="http://localhost:8000/assets/js/jquery-1.9.1.min.js"></script>
-<script src="http://localhost:8000/assets/js/jquery-migrate-1.0.0.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.ui.touch-punch.js"></script>
-
-<script src="http://localhost:8000/assets/js/modernizr.js"></script>
-
-<script src="http://localhost:8000/assets/js/bootstrap.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.cookie.js"></script>
-
-<script src='http://localhost:8000/assets/js/fullcalendar.min.js'></script>
-
-<script src='http://localhost:8000/assets/js/jquery.dataTables.min.js'></script>
-
-<script src="http://localhost:8000/assets/js/excanvas.js"></script>
-<script src="http://localhost:8000/assets/js/jquery.flot.js"></script>
-<script src="http://localhost:8000/assets/js/jquery.flot.pie.js"></script>
-<script src="http://localhost:8000/assets/js/jquery.flot.stack.js"></script>
-<script src="http://localhost:8000/assets/js/jquery.flot.resize.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.chosen.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.uniform.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.cleditor.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.noty.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.elfinder.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.raty.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.iphone.toggle.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.uploadify-3.1.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.gritter.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.imagesloaded.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.masonry.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.knob.modified.js"></script>
-
-<script src="http://localhost:8000/assets/js/jquery.sparkline.min.js"></script>
-
-<script src="http://localhost:8000/assets/js/counter.js"></script>
-
-<script src="http://localhost:8000/assets/js/retina.js"></script>
-
-<script src="http://localhost:8000/assets/js/custom.js"></script>
-<!-- end: JavaScript-->
-
-</body>
+        $( ".input" ).focusout(function() {
+            $( this ).find( "span" ).animate({"opacity":"1"}, 300);
+        });
+/*
+        $(".login").submit(function(){
+            $(this).find(".submit i").removeAttr('class').addClass("fa fa-check").css({"color":"#fff"});
+            $(".submit").css({"background":"#2ecc71", "border-color":"#2ecc71"});
+            $(".feedback").show().animate({"opacity":"1", "bottom":"-80px"}, 400);
+            $("input").css({"border-color":"#2ecc71"});
+            return false;
+        });
+*/
+    </script>
+    </body>
 </html>
