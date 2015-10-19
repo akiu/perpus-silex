@@ -5,7 +5,10 @@
 # composer vendor dir
 vendor
 
+# app
 app/logs
 app/cache
 !app/cache/.gitkeep
 !app/logs/.gitkeep
+
+app/config.yml

@@ -1,0 +1,7 @@
+db.options:
+  driver: pdo_mysql
+  host: localhost
+  user: username
+  password: password
+  dbname: express
+debug: true
